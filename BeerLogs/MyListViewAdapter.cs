@@ -12,12 +12,12 @@ using Android.Widget;
 
 namespace BeerLogs
 {
-	class MyListViewAdapter : BaseAdapter<string>
+	class MyListViewAdapter : BaseAdapter<Person>
 	{
-		private List<string> mItems;
+		private List<Person> mItems;
 		private Context mContext;
 
-		public MyListViewAdapter(Context context, List<string> items)
+		public MyListViewAdapter(Context context, List<Person> items)
 		{
 			mItems = items;
 			mContext = context;
@@ -36,7 +36,7 @@ namespace BeerLogs
 			return position;
 		}
 
-		public override string this[int position]
+		public override Person this[int position]
 		{
 			get
 			{
@@ -53,8 +53,14 @@ namespace BeerLogs
 				row = LayoutInflater.From(mContext).Inflate(Resource.Layout.listview_row, null, false);
 			}
 
-			TextView txtName = row.FindViewById<TextView>(Resource.Id.textView1);
-			txtName.Text = mItems[position];
+			TextView txtName = row.FindViewById<TextView>(Resource.Id.txtName);
+			txtName.Text = mItems[position].FirstName;
+			TextView txtLastName = row.FindViewById<TextView>(Resource.Id.txtLastName);
+			txtLastName.Text = mItems[position].LastName;
+			TextView txtAge = row.FindViewById<TextView>(Resource.Id.txtAge);
+			txtAge.Text = mItems[position].age;
+			TextView txtGender = row.FindViewById<TextView>(Resource.Id.txtGender);
+			txtGender.Text = mItems[position].gender;
 
 			return row;
 		}
